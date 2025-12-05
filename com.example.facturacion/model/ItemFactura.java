@@ -28,12 +28,12 @@ public class ItemFactura {
     @NotNull(message = "El producto es obligatorio")
     private Producto producto;
 
-    @ManyToOne(fetch = FetchType.LAZY) // OK, se carga solo cuando se necesita
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id", nullable = false)
     private Factura factura;
 
-    // Método para calcular el subtotal
-    public Double getImporte() {
+    // Método correcto usado por Factura
+    public Double getSubtotal() {
         if (producto == null || producto.getPrecio() == null) {
             return 0.0;
         }

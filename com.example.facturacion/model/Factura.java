@@ -39,6 +39,7 @@ public class Factura {
             fetch = FetchType.LAZY)
     private List<ItemFactura> items = new ArrayList<>();
 
+    
     @Column(nullable = false)
     private Double total = 0.0;
 
@@ -47,16 +48,16 @@ public class Factura {
         this.fechaCreacion = new Date();
     }
 
-    // Helper para agregar items correctamente
+    // Añadir items con relación bidireccional
     public void addItem(ItemFactura item) {
         item.setFactura(this);
         this.items.add(item);
     }
 
-    // Helper para calcular total
+    // Calcular total de la factura
     public void calcularTotal() {
         this.total = this.items.stream()
-                .mapToDouble(ItemFactura::getImporte)
+                .mapToDouble(ItemFactura::getSubtotal)  // ← corregido
                 .sum();
     }
 }
