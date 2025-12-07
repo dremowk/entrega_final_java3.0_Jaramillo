@@ -1,0 +1,16 @@
+com\example\facturacion\repository\ProductoRepository.class
+com\example\facturacion\model\ItemFactura.class
+com\example\facturacion\service\ProductoService.class
+com\example\facturacion\dto\FacturaRequestDTO$ProductoRef.class
+com\example\facturacion\FacturacionApplication.class
+com\example\facturacion\controller\FacturaController.class
+com\example\facturacion\repository\ClienteRepository.class
+com\example\facturacion\model\Factura.class
+com\example\facturacion\service\ClienteService.class
+com\example\facturacion\dto\ItemLineaDTO.class
+com\example\facturacion\dto\FacturaRequestDTO.class
+com\example\facturacion\model\Producto.class
+com\example\facturacion\model\Cliente.class
+com\example\facturacion\service\FacturaService.class
+com\example\facturacion\repository\FacturaRepository.class
+com\example\facturacion\dto\FacturaRequestDTO$ClienteRef.class
