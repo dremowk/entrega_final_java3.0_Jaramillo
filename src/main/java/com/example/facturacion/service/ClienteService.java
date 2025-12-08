@@ -4,6 +4,8 @@ import com.example.facturacion.model.Cliente;
 import com.example.facturacion.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClienteService {
 
@@ -13,6 +15,7 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
+    // ✅ Crear cliente
     public Cliente crear(Cliente cliente) {
 
         if (clienteRepository.existsByEmail(cliente.getEmail())) {
@@ -21,4 +24,23 @@ public class ClienteService {
 
         return clienteRepository.save(cliente);
     }
+
+    // ✅ NUEVO: listar todos los clientes
+    public List<Cliente> listarTodos() {
+        return clienteRepository.findAll();
+    }
+
+    // ✅ NUEVO: buscar cliente por ID
+    public Cliente buscarPorId(Long id) {
+        return clienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+    }
+
+    public void eliminar(Long id) {
+    if (!clienteRepository.existsById(id)) {
+        throw new RuntimeException("Cliente no existe");
+    }
+    clienteRepository.deleteById(id);
+}
+
 }
