@@ -32,9 +32,10 @@ public class ClienteController {
 
     // ✅ NUEVO: obtener cliente por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> obtenerPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(clienteService.buscarPorId(id));
-    }
+public ResponseEntity<Cliente> obtenerPorId(@PathVariable Long id) {
+    return ResponseEntity.ok(clienteService.obtenerPorId(id));
+}
+
 
 @DeleteMapping("/{id}")
 public ResponseEntity<Void> eliminar(@PathVariable Long id) {

@@ -31,10 +31,11 @@ public class ClienteService {
     }
 
     // ✅ NUEVO: buscar cliente por ID
-    public Cliente buscarPorId(Long id) {
-        return clienteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
-    }
+   public Cliente obtenerPorId(Long id) {
+    return clienteRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+}
+
 
     public void eliminar(Long id) {
     if (!clienteRepository.existsById(id)) {
