@@ -1,10 +1,9 @@
 package com.example.facturacion.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,13 +32,15 @@ public class Factura {
     @NotNull(message = "La factura debe tener un cliente asociado")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "factura",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY)
+    @OneToMany(
+        mappedBy = "factura",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true,
+        fetch = FetchType.LAZY
+    )
+    @JsonManagedReference
     private List<ItemFactura> items = new ArrayList<>();
 
-    
     @Column(nullable = false)
     private Double total = 0.0;
 
@@ -48,16 +49,15 @@ public class Factura {
         this.fechaCreacion = new Date();
     }
 
-    // Añadir items con relación bidireccional
+    // relación correcta
     public void addItem(ItemFactura item) {
         item.setFactura(this);
         this.items.add(item);
     }
 
-    // Calcular total de la factura
     public void calcularTotal() {
         this.total = this.items.stream()
-                .mapToDouble(ItemFactura::getSubtotal)  // ← corregido
+                .mapToDouble(ItemFactura::getSubtotal)
                 .sum();
     }
 }

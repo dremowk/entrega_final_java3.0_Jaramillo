@@ -1,11 +1,10 @@
 package com.example.facturacion.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "items_factura")
@@ -30,9 +29,9 @@ public class ItemFactura {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id", nullable = false)
+    @JsonBackReference
     private Factura factura;
 
-    // Método correcto usado por Factura
     public Double getSubtotal() {
         if (producto == null || producto.getPrecio() == null) {
             return 0.0;
