@@ -154,7 +154,7 @@
       "name": "Lista de todas las Facturas",
       "id": "7fc50705-5f06-4fa2-8451-836d88a87dfa",
       "request": {
-        "method": "POST",
+        "method": "GET",
         "header": [],
         "body": {
           "mode": "raw",
